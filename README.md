@@ -29,23 +29,17 @@ YOLOv3 breaks an input image into grids and predicts bounding boxes, class proba
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your-username/yolov3-object-detection.git
-    cd yolov3-object-detection
+    git clone https://github.com/ahmdmohamedd/Object-detection-YOLOv3.git
+    cd Object-detection-YOLOv3
     ```
 
-2. Install the required dependencies:
-
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-3. Download the pre-trained YOLOv3 weights:
+2. Download the pre-trained YOLOv3 weights:
 
     ```bash
     wget https://pjreddie.com/media/files/yolov3.weights
     ```
 
-4. Ensure the following files are in your project directory:
+3. Ensure the following files are in your project directory:
 
     - `yolov3.cfg`: YOLOv3 model configuration file.
     - `yolov3.weights`: Pre-trained weights for YOLOv3.
