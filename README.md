@@ -1,149 +1,78 @@
-YOLOv3 Object Detection
+# Object Detection with YOLOv3
 
-This repository demonstrates object detection using the YOLOv3 (You Only Look Once) model with COCO dataset labels. YOLOv3 is a fast and accurate object detection algorithm that can identify multiple objects in an image or video in real-time.
+This project implements real-time object detection using the YOLOv3 (You Only Look Once) model. YOLOv3 is a state-of-the-art, real-time object detection system that can identify multiple objects in an image with high accuracy. This notebook utilizes OpenCV and the YOLO framework to achieve effective object detection in real-time video streams.
+
+## Table of Contents
+
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [How It Works](#how-it-works)
+- [Requirements](#requirements)
 
 ## Features
 
-- Uses **YOLOv3** for object detection.
-- Detects objects from the **COCO dataset** which includes 80 classes like person, car, dog, etc.
-- Supports image and video inputs for detection.
-- Outputs annotated images or videos with detected objects and confidence scores.
-
-## Technologies Used
-
-- Python 3.x
-- OpenCV
-- YOLOv3 (Darknet framework)
-- COCO dataset
-
-## How It Works
-
-YOLOv3 breaks an input image into grids and predicts bounding boxes, class probabilities, and confidence scores for each grid. It detects multiple objects of different classes in an image using a single forward pass through the network, making it very efficient.
-
-1. **Pre-trained Model**: We use a pre-trained YOLOv3 model trained on the COCO dataset, which can detect 80 different objects.
-2. **Input Data**: The system accepts both images and videos as input and runs object detection on each frame in the case of videos.
-3. **Output**: The detected objects are highlighted with bounding boxes, and the class name along with the confidence score is displayed for each detected object.
+- Real-time object detection using webcam or video files.
+- High accuracy in detecting objects from the COCO dataset.
+- Easy-to-follow Jupyter Notebook structure.
+- Visualizations of detected objects with confidence scores.
+- Customizable confidence thresholds for detection.
 
 ## Installation
 
-1. Clone the repository:
+To run this project, you need to have the following installed on your system:
 
-    ```bash
-    git clone https://github.com/ahmdmohamedd/Object-detection-YOLOv3.git
-    cd Object-detection-YOLOv3
-    ```
+1. **Python 3.x**
+2. **OpenCV**: Install OpenCV using pip:
+   ```bash
+   pip install opencv-python
+   ```
 
-2. Download the pre-trained YOLOv3 weights:
+3. **NumPy**: Install NumPy using pip:
+   ```bash
+   pip install numpy
+   ```
 
-    ```bash
-    wget https://pjreddie.com/media/files/yolov3.weights
-    ```
+4. **Jupyter Notebook**: Install Jupyter Notebook using pip:
+   ```bash
+   pip install jupyter
+   ```
 
-3. Ensure the following files are in your project directory:
+5. **Weights and Configuration Files**:
+   - Download the YOLOv3 weights from [YOLO website](https://pjreddie.com/darknet/yolo/).
+   - Download the YOLOv3 configuration file (`yolov3.cfg`) and COCO dataset names file (`coco.names`) from the YOLO repository.
 
-    - `yolov3.cfg`: YOLOv3 model configuration file.
-    - `yolov3.weights`: Pre-trained weights for YOLOv3.
-    - `coco.names`: List of 80 COCO dataset object class names.
+Place these files in the same directory as your notebook.
 
 ## Usage
 
-1. **Object Detection on Images**:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/ahmdmohamedd/Object-detection-YOLOv3.git
+   cd Object-detection-YOLOv3
+   ```
 
-    Run the object detection on a single image.
+2. Launch Jupyter Notebook:
+   ```bash
+   jupyter notebook
+   ```
 
-    ```bash
-    python detect.py --image images/sample.jpg
-    ```
+3. Open the `yolo_object_detection.ipynb` notebook.
 
-2. **Object Detection on Videos**:
+4. Run the cells sequentially to initialize the YOLO model and start detecting objects in real-time.
 
-    Run the object detection on a video file.
+## How It Works
 
-    ```bash
-    python detect.py --video videos/sample.mp4
-    ```
+The YOLOv3 object detection model works by dividing the input image into a grid and predicting bounding boxes and class probabilities for each grid cell. The process includes:
 
-3. **Live Object Detection Using Webcam**:
+- Loading the YOLO model and class labels.
+- Setting up video capture from a webcam or video file.
+- Processing each frame to detect objects, applying non-maximum suppression to filter out overlapping boxes.
+- Drawing bounding boxes and labels on detected objects.
 
-    Perform real-time object detection using your webcam.
+## Requirements
 
-    ```bash
-    python detect.py --webcam
-    ```
-
-### Example Output
-
-- The output will display bounding boxes around detected objects in the image or video with labels such as:
-  - "person: 98%" 
-  - "car: 89%"
-
-## File Structure
-
-```bash
-yolov3-object-detection/
-│
-├── detect.py            # Main detection script
-├── yolov3.cfg           # YOLOv3 configuration file
-├── yolov3.weights       # Pre-trained YOLOv3 weights
-├── coco.names           # COCO dataset labels (80 object classes)
-├── images/              # Directory to store sample images
-├── videos/              # Directory to store sample videos
-├── output/              # Directory to save output images/videos with detections
-├── requirements.txt     # List of dependencies
-└── README.md            # Project documentation
-```
-
-## Arguments
-
-- `--image`: Path to the input image.
-- `--video`: Path to the input video.
-- `--webcam`: Use webcam for live detection.
-
-## How to Run
-
-1. For an image:
-
-    ```bash
-    python detect.py --image path_to_image
-    ```
-
-2. For a video:
-
-    ```bash
-    python detect.py --video path_to_video
-    ```
-
-3. For real-time detection with a webcam:
-
-    ```bash
-    python detect.py --webcam
-    ```
-
-## Results
-
-- **Annotated Images**: The output images will be saved in the `output/` folder with bounding boxes around detected objects.
-- **Annotated Videos**: The output video will have bounding boxes and be saved in the `output/` folder.
-
-## COCO Dataset Classes
-
-This project uses the COCO dataset, which includes 80 classes like:
-
-- person
-- car
-- dog
-- bicycle
-- chair
-- etc.
-
-For the full list, check the `coco.names` file in the repository.
-
-## How to Contribute
-
-Contributions are welcome! If you'd like to improve this project:
-
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature-branch`).
-3. Make your changes.
-4. Commit the changes (`git commit -m 'Add new feature'`).
-5. Push to the branch (`git push origin feature-branch`).
-6. Open a Pull Request.
+- Python 3.x
+- OpenCV
+- NumPy
+- Jupyter Notebook
